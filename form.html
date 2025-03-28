@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Receipt Generator Form</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <form id="receiptForm">
+            <h2>Receipt Details</h2>
+
+            <!--Customers Details-->
+            <div>
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" required>
+            </div>
+            <div>
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" required>
+            </div>
+            <div>
+                <label for="invoiceNumber">INVOICE NO:</label>
+                <input type="text" id="invoiceNumber" required>
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+            </div>
+            <div>
+                <label for="paymentMode">Payment Mode:</label>
+                <select id="paymentMode" required>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Card Payment">Card Payment</option>
+                </select>
+            </div>
+
+            <!--Item Table-->
+            <div id="itemTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Name</th>
+                            <th>Item Description</th>
+                            <th>Item S/N</th>
+                            <th>Qty</th>
+                            <th>(₦) Unit Price</th>
+                            <th>Discount (%)</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemRows">
+                    </tbody>
+                </table>
+                <button type="button" id="addItem">Add Item</button>
+            </div>
+
+            <!-- Totals Section -->
+            <div id="totals">
+                <p>Item-Qty: <span id="itemQty">0</span></p>
+                <p>Sub Total: <span id="subTotal">0</span></p>
+                <p>Total: <span id="total">0</span></p>
+                <p>Amount In Words: <span id="amountInWords"></span></p>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Generate Receipt</button>
+        </form>
+
+        <script src="script.js"></script>
+    </body>
+</html>

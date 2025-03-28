@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 80px;
+    font-family: 'Inter Tight', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    background-color: #f7f6f6;
+}
+
+/*Navbar-section
+nav {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #ebe9e9;
+    position: fixed;
+    border-bottom: 1.5px solid #887d7d;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    width: 35%;
+}
+
+.nav-links {
+    margin: 0 5rem 0;
+    align-items: center;
+    display: flex;
+    list-style: none;
+    gap: 5rem;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: rgb(206, 99, 99);
+}*/
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.hero {
+    margin-top: 25px;
+    align-items: center;
+    width: 25%;
+}
+
+.header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 10px;
+}
+.contact-info {
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.invoice-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100;
+    margin-top: 2rem;
+}
+
+.customer-details {
+    text-align: left;
+}
+
+.customer-details p {
+    font-size: 0.9rem;
+}
+
+.invoice-details {
+    text-align: right;
+}
+
+.invoice-details p {
+    font-size: 0.9rem;
+}
+
+.invoice-details h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/*This is used to make the (th) in the date to be a superscript*/
+sup {
+    font-size: 10px;
+    vertical-align: super;
+}
+
+/*Table-section (Used AI to research on how to style it so it will be able to aling well)*/
+.item-table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 2rem;
+    border-collapse: collapse;
+    background-color: #f7f6f6;
+}
+
+th, td {
+    border: 1px solid #222222;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.totals-section {
+    margin-top: 3rem;
+    border: none;
+}
+
+.totals-details p {
+    margin: 5px auto;
+    font-size: 14px;
+    text-align: right;
+}
+
+.totals-details p span {
+  font-weight: bold;  
+}
+
+.invoice-details p:first-child {
+    margin-top: 0;
+}
+
+.invoice-details p:last-child {
+    margin-bottom: 0;
+}
+
+.terms-section {
+    margin-bottom: 20px;
+    margin-top: 7rem;
+}
+
+.terms-section h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.terms-section p {
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.terms-section ol {
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0;
+    padding-left: 30px;
+    line-height: 1.5;
+}
+
+.terms-section ol li {
+    margin-bottom: 10px;
+}
+
+.partner-text {
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 5rem;
+}
+
+.thank-you-text {
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+
+@media print {
+    .terms-section {
+        page-break-before: always;
+        break-before: page; /* Fallback for modern browsers */
+        margin-top: 10px;
+    }
+}
+
+/*footer-section
+.footer {
+    text-align: center;
+    padding: 25px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    border-top: 1.5px solid #887d7d;
+    background-color: #ebe9e9;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+*/
