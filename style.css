@@ -63,21 +63,30 @@
     transform: scale(1.05);
    }
 
+   #itemTable {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+   }
+
    #itemTable table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    min-width: 600px;
    }
 
    #itemTable th, #itemTable td {
     padding: 10px;
     text-align: left;
+    white-space: nowrap;
     border-bottom: 1px solid #dee2e6;
    }
 
    #itemTable input {
     width: 100%;
     padding: 5px;
+    box-sizing: border-box;
     border: 1px solid #ced4da;
     border-radius: 4px;
    }
@@ -217,8 +226,47 @@
     color: #6c757d;
    }
 
+   .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Firefox */
+}
+
+.table-wrapper::-webkit-scrollbar {
+    height: 8px; /* Chrome, Safari */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #888; /* Scrollbar color */
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+}
+
 
    @media (max-width: 768px) {
+
+    #itemTable {
+        display: block; /* Allow overflow to work properly */
+    }
+
+    #itemTable table {
+        width: 100%;
+        min-width: 0; /* Remove min-width on small screens */
+    }
+
+    #itemTable th, #itemTable td {
+        font-size: 0.85rem; /* Slightly smaller text on mobile */
+        padding: 8px; /* Reduce padding for compactness */
+    }
+
+    #itemTable .removeItem {
+        padding: 4px 8px; /* Adjust button size */
+    }
+
     .invoice-container {
         grid-template-columns: 1fr;
     }

@@ -119,6 +119,7 @@ table {
     width: 100%;
     overflow-x: auto;
     margin-top: 2rem;
+    min-width: 600px;
     border-collapse: collapse;
     background-color: #f7f6f6;
 }
@@ -128,6 +129,7 @@ th, td {
     padding: 10px;
     text-align: center;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .totals-section {
@@ -151,6 +153,26 @@ th, td {
 
 .invoice-details p:last-child {
     margin-bottom: 0;
+}
+
+/* Invoice Number - Make it red */
+.invoice-details h1 span#invoiceNumber {
+    color: #9e0101; /* Red color */
+}
+
+/* Customer Name - Bold */
+.customer-details p:first-child span#customerName {
+    font-weight: bold;
+}
+
+/* Phone Number - Bold */
+.customer-details p:last-child span#phoneNumber {
+    font-weight: bold;
+}
+
+/* Date - Bold */
+.invoice-details p span#date {
+    font-weight: bold;
 }
 
 .terms-section {
@@ -200,6 +222,48 @@ th, td {
     text-align: center;
     margin-bottom: 0;
     padding-bottom: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Firefox */
+}
+
+.table-wrapper::-webkit-scrollbar {
+    height: 8px; /* Chrome, Safari */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #888; /* Scrollbar color */
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+}
+
+@media (max-width: 768px) {
+    .item-table {
+        display: block; /* Ensure overflow works */
+    }
+
+    table {
+        min-width: 0; /* Remove min-width on small screens */
+    }
+
+    th, td {
+        font-size: 0.8rem; /* Smaller text on mobile */
+        padding: 8px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 480px) {
+    th, td {
+        font-size: 0.75rem; /* Even smaller text for very small screens */
+        padding: 6px;
+    }
 }
 
 @media print {
