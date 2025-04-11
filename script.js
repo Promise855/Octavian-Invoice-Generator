@@ -3,6 +3,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const itemRows = document.getElementById('itemRows');
     let serialNumber = 1;
 
+    const invoiceInput = document.getElementById('invoiceNumber');
+    invoiceInput.value = generateSequentialInvoiceNumber();
+
+    // function to make the Invoice Number auto-generated
+    function generateSequentialInvoiceNumber() {
+        let counter = parseInt(localStorage.getItem('invoiceCounter')) || 0;
+        counter++;
+        const paddedCounter = counter.toString().padStart(4, '0');
+        localStorage.setItem('invoiceCounter', counter);
+        return `${paddedCounter}`;
+    }
+
+    //  Function to format numbers with commas
+    function formatNumberWithCommas(number) {
+        // Convert to string and handle decimal places
+        const parts = number.toString().split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return parts.join('.');
+    }
+
+    // Function to clean input (remove commas for calculations)
+    function cleanNumberInput(value) {
+        return value.replace(/,/g, '');
+    }
+
     // Add new item row
     addItemBtn.addEventListener('click', function() {
         if (serialNumber > 20) {
@@ -32,6 +57,16 @@ document.addEventListener('DOMContentLoaded', function() {
             updateTotals();
         });
 
+        const unitPriceInput = row.querySelector('input[name="unitPrice"]');
+        unitPriceInput.addEventListener('input', function() {
+            // Remove commas for processing, then reformat with commas
+            let cleanValue = cleanNumberInput(this.value);
+            if (cleanValue !== '' && !isNaN(cleanValue)) {
+                this.value = formatNumberWithCommas(cleanValue);
+            }
+            calculateAmount({ target: this }); // Trigger calculation
+        });
+
         // Add event listeners for real-time calculations
         const inputs = row.querySelectorAll('input[name="qty"], input[name="unitPrice"], input[name="discount"]');
         inputs.forEach(input => input.addEventListener('input', calculateAmount));
@@ -57,12 +92,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function calculateAmount(event) {
         const row = event.target.closest('tr');
         const qty = parseFloat(row.querySelector('input[name="qty"]').value) || 0;
-        const unitPrice = parseFloat(row.querySelector('input[name="unitPrice"]').value) || 0;
+        const unitPrice = parseFloat(cleanNumberInput(row.querySelector('input[name="unitPrice"]').value)) || 0;
         const discount = parseFloat(row.querySelector('input[name="discount"]').value) || 0;
         const discountAmount = (unitPrice * discount) / 100;
         const amount = qty * (unitPrice - discountAmount);
 
-        row.querySelector('input[name="amount"]').value = amount.toFixed(2);
+        row.querySelector('input[name="amount"]').value = formatNumberWithCommas(amount.toFixed(2));
         updateTotals();
     }
 
@@ -74,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         rows.forEach(row => {
             const qtyElement = row.querySelector('input[name="qty"]');
             const qty = qtyElement ? parseFloat(qtyElement.value) || 0 : 0;
-            const unitPrice = parseFloat(row.querySelector('input[name="unitPrice"]')?.value) || 0;
+            const unitPrice = parseFloat(cleanNumberInput(row.querySelector('input[name="unitPrice"]')?.value)) || 0;
             const discount = parseFloat(row.querySelector('input[name="discount"]')?.value) || 0;
 
             itemQty += qty;
@@ -163,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const description = inputs[2].value;
             const itemSN = inputs[3].value;
             const qty = parseInt(inputs[4].value) || 0;
-            const unitPrice = parseFloat(inputs[5].value) || 0;
+            const unitPrice = parseFloat(cleanNumberInput(inputs[5].value)) || 0;
             const discount = parseFloat(inputs[6].value) || 0;
             const amount = (qty * unitPrice) * (1 - discount / 100);
             items.push({ sn: index + 1, name, description, itemSN, qty, unitPrice, discount, amount });
