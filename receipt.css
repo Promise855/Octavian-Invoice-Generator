@@ -12,43 +12,6 @@ body {
     background-color: #f7f6f6;
 }
 
-/*Navbar-section
-nav {
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: #ebe9e9;
-    position: fixed;
-    border-bottom: 1.5px solid #887d7d;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.logo {
-    width: 35%;
-}
-
-.nav-links {
-    margin: 0 5rem 0;
-    align-items: center;
-    display: flex;
-    list-style: none;
-    gap: 5rem;
-}
-
-.nav-links a {
-    font-size: 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: rgb(206, 99, 99);
-}*/
-
 .container {
     width: 100%;
     max-width: 1200px;
@@ -59,7 +22,7 @@ nav {
 .hero {
     margin-top: 25px;
     align-items: center;
-    width: 25%;
+    width: 26%;
 }
 
 .header {
@@ -71,6 +34,15 @@ nav {
     align-items: center;
     font-size: 0.9rem;
     font-weight: bold;
+}
+
+.contact-info a {
+    color: #003087; 
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline; 
 }
 
 .invoice-container {
@@ -273,21 +245,3 @@ th, td {
         margin-top: 10px;
     }
 }
-
-/*footer-section
-.footer {
-    text-align: center;
-    padding: 25px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    border-top: 1.5px solid #887d7d;
-    background-color: #ebe9e9;
-}
-
-.footer p {
-    margin: 5px 0;
-    font-size: 12px;
-    font-weight: bold;
-}
-*/
