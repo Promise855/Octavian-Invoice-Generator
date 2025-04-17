@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Convert number to words (Naira & Kobo)
     function numberToWords(num) {
+        // Handle edge cases
+        if (isNaN(num) || num < 0) return "Invalid Amount";
         if (num === 0) return "Zero Naira";
     
         const units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
@@ -135,8 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
         function convertGroupToWords(num) {
             let words = [];
             if (num >= 100) {
-                words.push(units[Math.floor(num / 100)] + " Hundred And");
+                words.push(units[Math.floor(num / 100)] + " Hundred");
                 num %= 100;
+                if (num > 0) words.push("And");
             }
             if (num >= 20) {
                 words.push(tens[Math.floor(num / 10)]);
@@ -166,13 +169,12 @@ document.addEventListener('DOMContentLoaded', function() {
             integerPart = Math.floor(integerPart / 1000);
             scaleIndex++;
         }
-    
-        let integerWords = words.join(" ");
+
+        // Ensure words is not empty
+        let integerWords = words.length > 0 ? words.join(" ") : "Zero";
         let decimalWords = decimalPart > 0 ? convertGroupToWords(decimalPart) + " Kobo" : "";
     
-        return decimalWords
-            ? integerWords + " Naira and " + decimalWords
-            : integerWords + " Naira";
+        return integerWords + " Naira" + (decimalWords ? " and " + decimalWords : "");
     }
 
     document.getElementById('receiptForm').addEventListener('submit', function(event) {
