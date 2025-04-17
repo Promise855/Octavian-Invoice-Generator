@@ -91,7 +91,7 @@ table {
     width: 100%;
     overflow-x: auto;
     margin-top: 2rem;
-    min-width: 600px;
+    table-layout: fixed; /* Added table-layout to Forces cells to respect width/max-width */
     border-collapse: collapse;
     background-color: #f7f6f6;
 }
@@ -101,7 +101,39 @@ th, td {
     padding: 10px;
     text-align: center;
     font-size: 0.9rem;
-    white-space: nowrap;
+    vertical-align: top; /*Added Vertical-align to align text at the top of each cell*/
+    box-sizing: border-box;
+}
+
+/* Styled the table td so it will not keep expanding when an item with a long name or description is logged in */
+td {
+    width: 100px; /* Sets a base width for consistent cell sizing */
+    max-width: 100px; /* Constrains cell width to trigger wrapping */
+    overflow-wrap: break-word; /* Breaks words to fit within max-width */
+    word-break: break-all; /* Breaks long strings without spaces */
+    hyphens: auto; /* Adds hyphenation for better text flow */
+}
+
+/* Target the S/N*/
+th:first-child,
+td:first-child {
+    width: 50px; /* Smaller width for S/N column */
+    max-width: 50px; /* Prevent expansion */
+}
+
+/* Target the Qty column (fifth column) */
+th:nth-child(5),
+td:nth-child(5) {
+    width: 60px;
+    max-width: 60px;
+}
+
+/* Target the Unit Price, Discount, and Amount columns */
+th:nth-child(6), td:nth-child(6), /* Unit Price */
+th:nth-child(7), td:nth-child(7), /* Discount */
+th:nth-child(8), td:nth-child(8) /* Amount */ {
+    width: 125px;
+    max-width: 125px;
 }
 
 .totals-section {
@@ -229,6 +261,15 @@ th, td {
         font-size: 0.8rem; /* Smaller text on mobile */
         padding: 8px; /* Reduce padding */
     }
+
+    /* Adjusted to ensure text wraps on smaller devices without excessive overflow */
+    td {
+        max-width: 100px; /* Reduced max-width for smaller screens to fit content */
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
+
+
 }
 
 @media (max-width: 480px) {
@@ -236,6 +277,15 @@ th, td {
         font-size: 0.75rem; /* Even smaller text for very small screens */
         padding: 6px;
     }
+
+    /* Ensures tight wrapping on narrow screens to prevent overlap */
+    td {
+        max-width: 80px; /* Further reduced max-width for very small screens */
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
+
+    
 }
 
 @media print {
@@ -244,4 +294,13 @@ th, td {
         break-before: page; /* Fallback for modern browsers */
         margin-top: 10px;
     }
+
+    /* Ensures text wraps in print to avoid cutoff */
+    td {
+        max-width: 120px;
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
+
+    
 }
