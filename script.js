@@ -3,18 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const itemRows = document.getElementById('itemRows');
     let serialNumber = 1;
 
-    const invoiceInput = document.getElementById('invoiceNumber');
-    invoiceInput.value = generateSequentialInvoiceNumber();
-
-    // function to make the Invoice Number auto-generated
-    function generateSequentialInvoiceNumber() {
-        let counter = parseInt(localStorage.getItem('invoiceCounter')) || 0;
-        counter++;
-        const paddedCounter = counter.toString().padStart(4, '0');
-        localStorage.setItem('invoiceCounter', counter);
-        return `${paddedCounter}`;
-    }
-
     //  Function to format numbers with commas
     function formatNumberWithCommas(number) {
         // Convert to string and handle decimal places
@@ -183,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Collect customer details
         const customerName = document.getElementById('customerName').value;
         const phoneNumber = document.getElementById('phoneNumber').value;
-        const invoiceNo = document.getElementById('invoiceNumber').value;
+        const invoiceNumber = document.getElementById('invoiceNumber').value;
         const date = document.getElementById('date').value;
     
         // Collect item details
@@ -213,11 +201,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const amountInWords = numberToWords(total);
     
         // Store receipt data in localStorage
-        const invoiceNumber = document.getElementById('invoiceNumber').value;
         const receiptData = {
             customerName,
             phoneNumber,
-            invoiceNumber, // Fixed from invoiceNo
+            invoiceNumber,
             date,
             items,
             itemQty,
